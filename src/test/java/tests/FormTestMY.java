@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.ClickOptions;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -9,15 +10,20 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class StudentRegistrationFormTests extends TestBase {
+public class FormTestMY extends TestBase {
 
     @Test
     void dataAppearsInOutputBlockTest() {
-        String firstName = "Alex",
-                lastName = "Putin",
+        Faker faker = new Faker();
+
+        String firstName = faker.name().firstName(),
+                lastName = faker.name().lastName(),
+                email = faker.internet().emailAddress(),
+                mobile = faker.phoneNumber().cellPhone(),
                 dayOfBirth = "11",
                 monthOfBirth = "May",
                 yearOfBirth = "1990",
+                currentAddress = faker.address().fullAddress(),
                 state = "Uttar Pradesh",
                 city = "Merrut";
 
@@ -26,9 +32,9 @@ public class StudentRegistrationFormTests extends TestBase {
 
         $("#firstName").val(firstName);
         $("#lastName").setValue(lastName);
-        $("#userEmail").setValue("ADadf@nasdp.com");
+        $("#userEmail").setValue(email);
         $("#gender-radio-1").click(ClickOptions.usingJavaScript());
-        $("#userNumber").setValue("89995551598");
+        $("#userNumber").setValue(mobile);
 
         $("#dateOfBirthInput").clear();
         $(".react-datepicker__year-select").selectOption(yearOfBirth);
@@ -42,9 +48,9 @@ public class StudentRegistrationFormTests extends TestBase {
         $("#uploadPicture").uploadFile(file);
         $("#uploadPicture").uploadFromClasspath("pict.jpg");
 
-        $("#currentAddress").val("Moscow");
+        $("#currentAddress").val(currentAddress);
 
-        //$("#state").setValue("Uttar Pradesh");
+        //$("#state").val("Uttar Pradesh");
         $("#state").click();
         $("#stateCity-wrapper").$(byText(state)).click();
         $("#city").click();
@@ -65,14 +71,9 @@ public class StudentRegistrationFormTests extends TestBase {
 //                text(email), text(gender));
 //        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text(firstName + " " + lastName));
         $x("//td[text()='Student Name']").parent().shouldHave(text(firstName + " " + lastName));
-        //$x("//td[text()='Student Email']").parent().shouldHave(text(email));
-        //$x("//td[text()='Gender']").parent().shouldHave(text(gender));
-        //$x("//td[text()='Mobile']").parent().shouldHave(text(mobile));
+        $x("//td[text()='Student Email']").parent().shouldHave(text(email));
         $x("//td[text()='Date of Birth']").parent().shouldHave(text(dayOfBirth + " " + monthOfBirth + "," + yearOfBirth));
-        //$x("//td[text()='Subjects']").parent().shouldHave(text(subject1 + ", " + subject2));
-        //$x("//td[text()='Hobbies']").parent().shouldHave(text(hobby1 + ", " + hobby2 + ", " + hobby3));
-        //$x("//td[text()='Picture']").parent().shouldHave(text(picture));
-        //$x("//td[text()='Address']").parent().shouldHave(text(currentAddress));
+        $x("//td[text()='Address']").parent().shouldHave(text(currentAddress));
         $x("//td[text()='State and City']").parent().shouldHave(text(state + " " + city));
 
     }
