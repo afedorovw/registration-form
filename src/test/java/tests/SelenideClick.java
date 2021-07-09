@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
 import java.util.*;
-public class NewSeleniumTest {
+public class SelenideClick {
   private Map<String, Object> vars;
   @BeforeEach
   public void setUp() {

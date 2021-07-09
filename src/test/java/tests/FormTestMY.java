@@ -62,9 +62,6 @@ public class FormTestMY extends TestBase {
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
 
         //Selenide.$(".modal-content").shouldHave(Condition.text("Thanks for submitting the form"));
-        //$("#output").shouldBe(visible);
-        //$("").shouldbe(visible, Duration.ofSeconds(30)); - Longer time
-        //Selenide.sleep(Long.parseLong("5000"));
 
         // asserts
 //        $(".table-responsive").shouldHave(text(firstName + " " + lastName),
