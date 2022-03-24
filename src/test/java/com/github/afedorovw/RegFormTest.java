@@ -1,6 +1,8 @@
 package com.github.afedorovw;
 
+import com.codeborne.selenide.WebDriverRunner;
 import com.github.javafaker.Faker;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -9,6 +11,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static io.qameta.allure.Allure.step;
 import static utils.RandomUtils.getRandomEmail;
 import static utils.RandomUtils.getRandomPhone;
 
@@ -24,12 +27,19 @@ public class RegFormTest extends TestBase {
     String currentAddress = faker.lebowski().quote() + " " +
             faker.address();
 
+    private static final String website = "https://demoqa.com/automation-practice-form";
+
     @Test
     void practiceFormTest() {
+        Allure.label("owner", "afedorovw");
+        Allure.link ("DemoQA", "https://demoqa.com/");
 
-        open("https://demoqa.com/automation-practice-form");
+        step ("Открываем главную страницу" + website, () -> {
+        open(website);
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        });
 
+        step ("Заполняем форму", () -> {
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(userEmail);
@@ -51,9 +61,21 @@ public class RegFormTest extends TestBase {
         $("#stateCity-wrapper").$(byText("Delhi")).click();
         $("#submit").shouldHave(text("Submit"));
         $("#submit").click();
+        });
 
+        step ("Проверка отправки формы", () -> {
+            Allure.addAttachment("PageSource", "text/html", WebDriverRunner.source(), "html");
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         $(".table-responsive").$(byText("Student Name"))
                 .parent().shouldHave(text(firstName + " " + lastName));
+        });
+    }
+
+    @Test
+    public void annotatedStepsTest() {
+        WebSteps steps = new WebSteps();
+        steps.openMainPage();
+        steps.formFilling();
+        steps.formCheck();
     }
 }
