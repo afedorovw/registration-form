@@ -1,9 +1,9 @@
-package tests;
+package com.github.afedorovw;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import pagob.RegPage;
+import com.github.afedorovw.pages.RegistrationPage;
 
 import java.io.File;
 
@@ -12,9 +12,9 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class Pages {
+public class PageobjectTest {
 
-    RegPage regPage = new RegPage();
+    RegistrationPage registrationPage = new RegistrationPage();
 
     @BeforeAll
     static void beforeAll() {
@@ -26,12 +26,12 @@ public class Pages {
 
         open("https://demoqa.com/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
-        regPage.typeFirstName();
-        regPage.typeLastName();
-        regPage.typeEmail("some@mail.com");
+        registrationPage.typeFirstName();
+        registrationPage.typeLastName();
+        registrationPage.typeEmail("some@mail.com");
         $("#genterWrapper").$(byText("Other")).click();
         $("#userNumber").setValue("1234567890");
-        regPage.setBirthDate("30", "July", "2008");
+        registrationPage.setBirthDate("30", "July", "2008");
         $("#subjectsInput").setValue("history").pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click();
         File file = new File("src/test/resources/pict.jpg");

@@ -1,9 +1,9 @@
-package pagob.calCom;
+package com.github.afedorovw.pages.components;
 
 import static com.codeborne.selenide.Selenide.$;
 import static java.lang.String.format;
 
-public class CalenCompon {
+public class CalendarComponent {
 
     public void setDate(String day, String month, String year) {
         $("#dateOfBirthInput").click();

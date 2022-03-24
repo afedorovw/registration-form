@@ -1,18 +1,18 @@
-package pagob;
+package com.github.afedorovw.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import pagob.calCom.CalenCompon;
+import com.github.afedorovw.pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class RegPage {
+public class RegistrationPage {
 
     SelenideElement
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail");
 
-    CalenCompon calenCompon = new CalenCompon();
+    CalendarComponent calendarComponent = new CalendarComponent();
 
     public void typeFirstName() {
         firstNameInput.setValue("Igor");
@@ -22,14 +22,14 @@ public class RegPage {
         lastNameInput.setValue("Nem");
     }
 
-    public RegPage typeEmail(String value) {
+    public RegistrationPage typeEmail(String value) {
         emailInput.setValue(value);
 
         return this;
     }
 
-    public RegPage setBirthDate(String day, String month, String year) {
-        calenCompon.setDate(day, month, year);
+    public RegistrationPage setBirthDate(String day, String month, String year) {
+        calendarComponent.setDate(day, month, year);
 
         return this;
     }
