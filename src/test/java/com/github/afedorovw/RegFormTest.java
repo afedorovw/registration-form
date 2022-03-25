@@ -33,6 +33,7 @@ public class RegFormTest extends TestBase {
     void practiceFormTest() {
         Allure.label("owner", "afedorovw");
         Allure.link ("DemoQA", "https://demoqa.com/");
+        Allure.parameter("demoqa", "dautomation-practice-form");
 
         step ("Открываем главную страницу" + website, () -> {
         open(website);
@@ -73,6 +74,8 @@ public class RegFormTest extends TestBase {
 
     @Test
     public void annotatedStepsTest() {
+        Allure.parameter("demoqa", "text-box");
+
         WebSteps steps = new WebSteps();
         steps.openMainPage();
         steps.formFilling();
