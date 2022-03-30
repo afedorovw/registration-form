@@ -2,9 +2,9 @@
 
 > `https://demoqa.com/automation-practice-form`
 
-### :technologist: Технологии и инструменты
+### Технологии и инструменты
 
-<p align="center">
+<p align="center"
 <code><img width="5%" title="IntelliJ IDEA" src="images/logo/Idea.svg"></code>
 <code><img width="5%" title="Java" src="images/logo/Java.svg"></code>
 <code><img width="5%" title="Selenoid" src="images/logo/Selenoid.svg"></code>
