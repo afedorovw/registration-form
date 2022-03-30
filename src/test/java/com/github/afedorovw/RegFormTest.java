@@ -3,6 +3,7 @@ package com.github.afedorovw;
 import com.codeborne.selenide.WebDriverRunner;
 import com.github.javafaker.Faker;
 import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -30,6 +31,8 @@ public class RegFormTest extends TestBase {
     private static final String website = "https://demoqa.com/automation-practice-form";
 
     @Test
+    @Description("Practice Form test")
+    @DisplayName("Проверка заполнения общей формы")
     void practiceFormTest() {
         Allure.label("owner", "afedorovw");
         Allure.link ("DemoQA", "https://demoqa.com/");
@@ -73,6 +76,8 @@ public class RegFormTest extends TestBase {
     }
 
     @Test
+    @Description("Annotated Steps test")
+    @DisplayName("Проверка заполнения формы")
     public void annotatedStepsTest() {
         Allure.parameter("demoqa", "text-box");
 
